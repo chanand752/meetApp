@@ -1,14 +1,14 @@
 import React from 'react'
 
-const HistoryContext = React.createContext({
-  isRegister: false,
+const RegisterContext = React.createContext({
+  isRegistered: false,
   changeRegistrationStatus: () => {},
   name: '',
-  updateName: () => {},
   topic: '',
+  updateName: () => {},
   updateTopic: () => {},
-  registerErr: false,
-  updateErr: () => {},
+  registerError: false,
+  updateError: () => {},
 })
 
-export default HistoryContext
+export default RegisterContext

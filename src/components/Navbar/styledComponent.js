@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Navbar = styled.nav`
+export const NavBar = styled.nav`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -8,6 +8,7 @@ export const Navbar = styled.nav`
   height: 70px;
   padding-left: 20px;
 `
+
 export const Logo = styled.img`
   height: 80%;
 `

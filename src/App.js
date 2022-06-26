@@ -1,22 +1,19 @@
 import {Component} from 'react'
-import {Switch, Route} from 'react-router-dom'
-import './App.css'
-import HistoryContext from './Context/RegisterContext'
-import Home from './components/Home'
-import Register from './components/Register'
-import NotFound from './components/NotFound'
+import {Route, Switch} from 'react-router-dom'
 
-// Replace your code here
+import Home from './components/Home'
+import NotFound from './components/NotFound'
+import Register from './components/Register'
+import RegisterContext from './Context/RegisterContext'
+
+import './App.css'
+
 class App extends Component {
   state = {
     isRegister: false,
     name: '',
     topic: 'Arts and Culture',
-    registerErr: false,
-  }
-
-  changeRegistrationStatus = () => {
-    this.setState({isRegister: true})
+    registerError: false,
   }
 
   updateName = updateName => {
@@ -27,31 +24,36 @@ class App extends Component {
     this.setState({topic: updateTopic})
   }
 
-  updateErr = response => {
-    this.setState({registerErr: response})
+  changeRegistrationStatus = () => {
+    this.setState({isRegister: true})
+  }
+
+  updateError = response => {
+    this.setState({registerError: response})
   }
 
   render() {
-    const {isRegister, name, topic, registerErr} = this.state
+    const {isRegister, name, topic, registerError} = this.state
+
     return (
-      <Switch>
-        <HistoryContext.Provider
-          value={{
-            isRegister,
-            changeRegistrationStatus: this.changeRegistrationStatus,
-            name,
-            topic,
-            updateName: this.updateName,
-            updateTopic: this.updateTopic,
-            registerErr,
-            updateErr: this.updateErr,
-          }}
-        >
+      <RegisterContext.Provider
+        value={{
+          isRegister,
+          name,
+          topic,
+          changeRegistrationStatus: this.changeRegistrationStatus,
+          updateName: this.updateName,
+          updateTopic: this.updateTopic,
+          registerError,
+          updateError: this.updateError,
+        }}
+      >
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route component={NotFound} />
-        </HistoryContext.Provider>
-      </Switch>
+        </Switch>
+      </RegisterContext.Provider>
     )
   }
 }

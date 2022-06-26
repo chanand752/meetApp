@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MainDiv = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,52 +8,57 @@ export const MainDiv = styled.div`
   min-height: 100vh;
   padding: 20px;
 `
-export const BeforeRegisH1 = styled.h1`
+
+export const Heading = styled.h1`
+  color: #334155;
   font-size: 50px;
   font-weight: 700;
-  margin: 0px;
-  color: #334155;
-  margin-bottom: 15px;
+  margin: 0;
+  margin-bottom: 20px;
 `
-export const BeforeRegisP = styled.p`
-  font-size: 24px;
-  margin: 0px;
-  font-weight: 700;
-  margin-bottom: 25px;
+
+export const Description = styled.p`
   color: #475569;
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 25px;
 `
-export const BeforeRegisBtn = styled.button`
-  background-color: #2563eb;
-  font-size: 18px;
-  font-weight: 700;
+
+export const Button = styled.button`
   color: #ffffff;
-  border: none;
-  border-radius: 10px;
+  background-color: #2563eb;
+  font-size: 20px;
+  font-weight: 600;
   height: 40px;
   width: 120px;
   margin-bottom: 25px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
   cursor: pointer;
 `
-export const BeforeRegisImg = styled.img`
+
+export const RegisImg = styled.img`
   height: 350px;
   width: 60%;
 `
+
 export const AfterRegisImg = styled.img`
   height: 350px;
   width: 60%;
 `
 
-export const AfterRegisH1 = styled.p`
+export const RegisHead = styled.h1`
+  color: #3b82f6;
   font-size: 70px;
   font-weight: 700;
-  color: #3b82f6;
-  margin: 0px;
+  margin: 0;
   margin-bottom: 10px;
 `
-export const AfterRegisP = styled.p`
-  font-size: 34px;
-  font-weight: 700;
-  margin: 0px;
-  margin-bottom: 25px;
+
+export const RegisDes = styled.p`
   color: #334155;
+  font-size: 35px;
+  margin: 0;
+  margin-bottom: 25px;
 `

@@ -1,62 +1,67 @@
 import {Link} from 'react-router-dom'
-import HistoryContext from '../../Context/RegisterContext'
+
+import RegisterContext from '../../Context/RegisterContext'
+
+import Navbar from '../Navbar'
 
 import {
-  MainDiv,
-  BeforeRegisH1,
-  BeforeRegisP,
-  BeforeRegisBtn,
-  BeforeRegisImg,
+  Container,
+  Heading,
+  Description,
+  Button,
+  RegisImg,
   AfterRegisImg,
-  AfterRegisH1,
-  AfterRegisP,
+  RegisHead,
+  RegisDes,
 } from './styledComponent'
-import NavBar from '../Navbar'
 
 const Home = props => {
   const onClickRegister = () => {
     const {history} = props
     history.replace('/register')
   }
-  const renderBeforeRegisteredView = () => (
+  const renderRegisterView = () => (
     <>
-      <BeforeRegisH1>Welcome to Meetup</BeforeRegisH1>
-      <BeforeRegisP>Please register for the topic</BeforeRegisP>
+      <Heading>Welcome to Meetup</Heading>
+      <Description>Please register for the topic</Description>
       <Link to="/register">
-        <BeforeRegisBtn onClick={onClickRegister}>Register</BeforeRegisBtn>
+        <Button onClick={onClickRegister}>Register</Button>
       </Link>
-      <BeforeRegisImg
+      <RegisImg
         src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
         alt="meetup"
       />
     </>
   )
-  const renderAfterRegisteredView = (name, topic) => (
+
+  const renderAfterRegisterView = (name, topic) => (
     <>
-      <AfterRegisH1>{`Hello ${name}`}</AfterRegisH1>
-      <AfterRegisP>{`Welcome to ${topic}`}</AfterRegisP>
+      <RegisHead>{`Hello ${name}`}</RegisHead>
+      <RegisDes>{`Welcome to ${topic}`}</RegisDes>
       <AfterRegisImg
         src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
         alt="meetup"
       />
     </>
   )
+
   return (
-    <HistoryContext.Consumer>
+    <RegisterContext.Consumer>
       {value => {
         const {isRegister, name, topic} = value
         return (
           <>
-            <NavBar />
-            <MainDiv>
+            <Navbar />
+            <Container>
               {isRegister
-                ? renderAfterRegisteredView(name, topic)
-                : renderBeforeRegisteredView()}
-            </MainDiv>
+                ? renderAfterRegisterView(name, topic)
+                : renderRegisterView()}
+            </Container>
           </>
         )
       }}
-    </HistoryContext.Consumer>
+    </RegisterContext.Consumer>
   )
 }
+
 export default Home
