@@ -1,11 +1,12 @@
-import {Navbar, Logo} from './styledComponent'
+import {NavBar, Logo} from './styledComponent'
 
-const NavBar = () => (
-  <Navbar>
+const Navbar = () => (
+  <NavBar>
     <Logo
       src="https://assets.ccbp.in/frontend/react-js/meetup/website-logo-img.png"
       alt="website logo"
     />
-  </Navbar>
+  </NavBar>
 )
-export default NavBar
+
+export default Navbar

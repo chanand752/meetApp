@@ -1,17 +1,19 @@
-import NavBar from '../Navbar'
-import HistoryContext from '../../Context/RegisterContext'
+import Navbar from '../Navbar'
+
+import RegisterContext from '../../Context/RegisterContext'
+
 import {
-  MainDiv,
-  RegisterCardDiv,
-  RegisterImg,
-  RegisterForm,
-  FormH1,
+  RegisterContainer,
+  FormContainer,
+  FormImg,
+  Form,
+  FormHead,
   Label,
   Input,
   Select,
-  Option,
+  Options,
   FormBtn,
-  ErrP,
+  FormErr,
 } from './styledComponent'
 
 const topicsList = [
@@ -38,69 +40,76 @@ const topicsList = [
 ]
 
 const Register = props => (
-  <HistoryContext.Consumer>
+  <RegisterContext.Consumer>
     {value => {
       const {
-        changeRegistrationStatus,
+        name,
+        topic,
         updateName,
         updateTopic,
-        topic,
-        name,
-        registerErr,
-        updateErr,
+        changeRegistrationStatus,
+        updateError,
+        registerError,
       } = value
+
       const submitForm = event => {
         event.preventDefault()
         changeRegistrationStatus()
+
         if (name !== '' && topic !== '') {
           const {history} = props
           history.replace('/')
         } else {
-          updateErr(true)
+          updateError(true)
         }
       }
-      const onChangeTopic = event => {
-        updateTopic(event.target.value)
-      }
+
       const onChangeName = event => {
         updateName(event.target.value)
       }
+
+      const onChangeTopic = event => {
+        updateTopic(event.target.value)
+      }
+
       return (
         <>
-          <NavBar />
-          <MainDiv>
-            <RegisterCardDiv>
-              <RegisterImg
+          <Navbar />
+          <RegisterContainer>
+            <FormContainer>
+              <FormImg
                 src="https://assets.ccbp.in/frontend/react-js/meetup/website-register-img.png"
                 alt="website register"
               />
-              <RegisterForm onClick={submitForm}>
-                <FormH1>Let us join</FormH1>
+              <Form onClick={submitForm}>
+                <FormHead>Let us Join</FormHead>
                 <Label htmlFor="name">NAME</Label>
                 <Input
                   type="text"
-                  id="name"
                   value={name}
-                  placeholder="Your name"
                   onChange={onChangeName}
+                  placeholder="Your name"
+                  id="name"
                 />
                 <Label htmlFor="topic">TOPICS</Label>
-                <Select id="topic" value={topic} onChange={onChangeTopic}>
+                <Select value={topic} id="topic" onChange={onChangeTopic}>
                   {topicsList.map(each => (
-                    <Option key={each.id} value={each.id}>
+                    <Options key={each.id} value={each.id}>
                       {each.displayText}
-                    </Option>
+                    </Options>
                   ))}
                 </Select>
                 <FormBtn type="submit">Register Now</FormBtn>
-                {registerErr ? <ErrP>Please enter your name</ErrP> : null}
-              </RegisterForm>
-            </RegisterCardDiv>
-          </MainDiv>
+                {registerError ? (
+                  <FormErr>please enter your name?</FormErr>
+                ) : null}
+              </Form>
+            </FormContainer>
+          </RegisterContainer>
         </>
       )
     }}
-  </HistoryContext.Consumer>
+  </RegisterContext.Consumer>
 )
 
 export default Register
